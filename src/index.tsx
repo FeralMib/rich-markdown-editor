@@ -127,6 +127,7 @@ export type Props = {
     [name: string]: (view: EditorView, event: Event) => boolean;
   };
   uploadImage?: (file: File) => Promise<string>;
+  uploadFile?: (file: File) => Promise<string>;
   onBlur?: () => void;
   onFocus?: () => void;
   onSave?: ({ done: boolean }) => void;
@@ -134,6 +135,8 @@ export type Props = {
   onChange?: (value: () => string) => void;
   onImageUploadStart?: () => void;
   onImageUploadStop?: () => void;
+  onFileUploadStart?: () => void;
+  onFileUploadStop?: () => void;
   onCreateLink?: (title: string) => Promise<string>;
   onSearchLink?: (term: string) => Promise<SearchResult[]>;
   onClickLink: (href: string, event: MouseEvent) => void;
@@ -169,6 +172,12 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
       // no default behavior
     },
     onImageUploadStop: () => {
+      // no default behavior
+    },
+    onFileUploadStart: () => {
+      // no default behavior
+    },
+    onFileUploadStop: () => {
       // no default behavior
     },
     onClickLink: href => {
@@ -769,9 +778,12 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   search={this.state.blockMenuSearch}
                   onClose={this.handleCloseBlockMenu}
                   uploadImage={this.props.uploadImage}
+                  uploadFile={this.props.uploadFile}
                   onLinkToolbarOpen={this.handleOpenLinkMenu}
                   onImageUploadStart={this.props.onImageUploadStart}
                   onImageUploadStop={this.props.onImageUploadStop}
+                  onFileUploadStart={this.props.onFileUploadStart}
+                  onFileUploadStop={this.props.onFileUploadStop}
                   onShowToast={this.props.onShowToast}
                   embeds={this.props.embeds}
                 />
