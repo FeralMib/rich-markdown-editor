@@ -103,6 +103,7 @@ export type Props = {
     | "heading"
     | "hr"
     | "image"
+    | "file"
     | "list_item"
     | "container_notice"
     | "ordered_list"
@@ -342,6 +343,13 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
             uploadImage: this.props.uploadImage,
             onImageUploadStart: this.props.onImageUploadStart,
             onImageUploadStop: this.props.onImageUploadStop,
+            onShowToast: this.props.onShowToast,
+          }),
+          new Image({
+            dictionary,
+            uploadFile: this.props.uploadFile,
+            onFileUploadStart: this.props.onFileUploadStart,
+            onFileUploadStop: this.props.onFileUploadStop,
             onShowToast: this.props.onShowToast,
           }),
           new Table(),
